@@ -7,8 +7,7 @@ import ujson as json
 
 from func import cudnn_gru, native_gru, dot_attention, summ, ptr_net
 from prepro import word_tokenize, convert_idx
-from flask import Flask
-from flask import request
+from flask import Flask, jsonify, request
 
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
