@@ -208,6 +208,7 @@ class Inference(object):
 
 #Simple Flask API
 app = Flask(__name__)
+infer = Inference()
 
 @app.route('/')
 def index():
@@ -215,7 +216,7 @@ def index():
 
 
 @app.route('/inference', methods=['POST'])
-def create_task():
+def api_inference():
     if not request.json or not 'context' in request.json or not 'question' in request.json:
         abort(400)
 
