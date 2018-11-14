@@ -8,6 +8,7 @@ import ujson as json
 from func import cudnn_gru, native_gru, dot_attention, summ, ptr_net
 from prepro import word_tokenize, convert_idx
 from flask import Flask, jsonify, request
+from flask_cors import CORS, cross_origin
 
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
@@ -211,6 +212,8 @@ class Inference(object):
 
 #Simple Flask API
 app = Flask(__name__)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
+
 infer = Inference()
 
 @app.route('/')
