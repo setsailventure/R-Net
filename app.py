@@ -157,11 +157,10 @@ class Inference(object):
         start_idx = span[yp1[0]][0]
         end_idx = span[yp2[0]][1]
         print('Getting Response:');
-        print(span, context_idxs, ques_idxs, context_char_idxs, ques_char_idxs);
-        print(context[start_idx-10: end_idx+10]);
+        print(context[start_idx-100: end_idx+100]);
         print(context[start_idx: end_idx]);
 
-        return context[start_idx: end_idx]
+        return context[start_idx: end_idx], context[start_idx-100: end_idx+100]
 
     def prepro(self, context, question):
         context = context.replace("''", '" ').replace("``", '" ')
@@ -224,11 +223,13 @@ def api_inference():
     if not request.json or not 'context' in request.json or not 'question' in request.json:
         abort(400)
 
-    answer = infer.response(request.json['context'], request.json['question'])
+    answer, passage= infer.response(request.json['context'], request.json['question'])
     print("Answer: {}".format(answer))
+    print("Passage: {}".format(passage))
 
     response = {
-        'answer': answer
+        'answer': answer,
+        'passage': passage
     }
     return jsonify(response), 200
 
