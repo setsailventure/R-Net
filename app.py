@@ -229,7 +229,7 @@ def api_inference():
 
     response = {
         'answer': answer,
-        'passage': passage
+        'passage': '...' + passage + '...'
     }
     return jsonify(response), 200
 
