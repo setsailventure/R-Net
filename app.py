@@ -156,6 +156,11 @@ class Inference(object):
                     model.tokens_in_context: len(span)})
         start_idx = span[yp1[0]][0]
         end_idx = span[yp2[0]][1]
+        print('Getting Response:');
+        print(span, context_idxs, ques_idxs, context_char_idxs, ques_char_idxs);
+        print(context[start_idx-10: end_idx+10]);
+        print(context[start_idx: end_idx]);
+
         return context[start_idx: end_idx]
 
     def prepro(self, context, question):
